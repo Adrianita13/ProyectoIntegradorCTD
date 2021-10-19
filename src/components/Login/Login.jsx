@@ -16,9 +16,11 @@ Además debe tener un botón que debe decir registro, y debajo del botón debe h
 
 import React from 'react'
 import useForm from './useForm';
+import validate from './LoginValidations';
+import RegisterValidations from './RegisterValidations';
 
 const Login = () => {
-    const {handleChange, values, handleSubmit} = useForm();
+    const {handleChange, values, handleSubmit, errors} = useForm(validate);
     
     return (
         <div>
@@ -38,6 +40,7 @@ const Login = () => {
                 value= {values.emailLogin}
                 onChange={handleChange}
                  />
+                 {errors.emailLogin && <p>{errors.emailLogin}</p>}
             </div>
 
             <div>
@@ -56,7 +59,7 @@ const Login = () => {
             <button type="submit">INICIAR SESIÓN</button>
 
 
-            <span> Aún no tenés cuenta? Regístrate <a href="./components/Login/Registro">aquí </a> </span>
+            <span> Aún no tenés cuenta? Regístrate <Link to="/Registro"> aquí </Link> </span>
         </div >
     )
 }
